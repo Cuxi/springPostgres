@@ -2,7 +2,7 @@
 
 Instalación
 
--maven
+-Maven
 
 -Postgres
 
