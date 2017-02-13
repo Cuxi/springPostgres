@@ -17,35 +17,35 @@ import java.util.ArrayList;
 @Controller
 public class EmployeeController {
 
-	@Autowired
-	private EmployeeService employeeService;
+	  @Autowired
+	  private EmployeeService employeeService;
 
-	@RequestMapping("/show/{clave}")
-	public String show(Model model, @PathVariable String clave){
+	  @RequestMapping("/show/{clave}")
+	  public String show(Model model, @PathVariable String clave){
 		model.addAttribute("aContact", employeeService.show(clave));
 
 		return "list";
-	}
+	  }
 	   
-	@RequestMapping("/employee")
-	public String consulta(Model model) {
-		model.addAttribute("contact", employeeService.listIdEmployee());
+	  @RequestMapping("/employee")
+	  public String consulta(Model model) {
+	    	model.addAttribute("contact", employeeService.listIdEmployee());
 	    
 	    	return "consulta";
-	}
+	  }
 
-	@RequestMapping("/delete")
-	public String delete (Model model, @ModelAttribute("contactDelete") String id){
+	  @RequestMapping("/delete")
+	  public String delete (Model model, @ModelAttribute("contactDelete") String id){
 
 		int c=employeeService.delete(id);
 
 		model.addAttribute("filas",c);
 
 		return "deleteOK";
-	}
+	  }
 
-	@RequestMapping("/insert")
-	public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
+	  @RequestMapping("/insert")
+	  public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
 		Contact contact1=new Contact();
 		contact1.setName(contact.getName());
 		contact1.setAddress(contact.getAddress());
@@ -57,11 +57,11 @@ public class EmployeeController {
 
 		return "insertOK";
 	
-	}
+	  }
 
 
-	@RequestMapping("/editar")
-	public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
+	  @RequestMapping("/editar")
+	  public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
 
 		Contact contact1=new Contact();
 		if(contact.getName()!=null){contact1.setName(contact.getName());}
@@ -73,6 +73,6 @@ public class EmployeeController {
 		model.addAttribute("resultado", c);
 
 		return "updateOK";
-	}
+	  }
 
 }

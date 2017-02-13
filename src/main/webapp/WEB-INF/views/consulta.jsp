@@ -4,9 +4,9 @@
 
 	<h1>Contacts</h1>
 	<p>
-	<select name="clave" onChange="window.location.href=this.value">
+	<select name="clave" >
 	<option value="">Selecciona uno</option>
-	<c:forEach items="${employeeList}" var="contact">
+	<c:forEach items="${contact}" var="contact">
 		<option value="/show/${contact}">${contact}</option>
 	</c:forEach>
 	</select>
