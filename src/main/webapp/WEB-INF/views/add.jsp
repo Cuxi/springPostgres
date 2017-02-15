@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+
 <html>
 <head>
 	<meta charset="utf-8">
@@ -7,24 +8,24 @@
 <body>
 	<h1>Crear contacto:</h1>
 	
-	<form:form method="POST" action="/insert" commandName="contactInsert">
+	<form method="POST" action="/insert">
 		<table>
 
 			<tr>
-				<td><form:label name="name">Name</form:label></td>
-				<td><form:input name="name" /></td>
+				<td><label name="name">Name<label></td>
+				<td><input name="name" /></td>
 			</tr>
 			<tr>
-				<td><form:label name="address">Address</form:label></td>
-				<td><form:input name="address" /></td>
+				<td><label name="address">Address</label></td>
+				<td><input name="address" /></td>
 			</tr>
 			<tr>
-				<td><form:label name="email">Email</form:label></td>
-				<td><form:input name="email" /></td>
+				<td><label name="email">Email</label></td>
+				<td><input name="email" /></td>
 			</tr>
 			<tr>
-				<td><form:label name="telephone">Telephone</form:label></td>
-				<td><form:input name="telephone" /></td>
+				<td><label path="telephone">Telephone</label></td>
+				<td><input name="telephone" /></td>
 			</tr>
 			<tr>
 				<td colspan="2">

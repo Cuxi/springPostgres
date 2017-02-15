@@ -11,5 +11,4 @@ public interface EmployeeService {
 	public int insert(Contact c);
 	public int delete(String id);
 	public int edit(Contact c,String id);
-	
 }

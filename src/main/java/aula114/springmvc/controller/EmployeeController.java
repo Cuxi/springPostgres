@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import aula114.springmvc.service.EmployeeService;
@@ -17,62 +18,87 @@ import java.util.ArrayList;
 @Controller
 public class EmployeeController {
 
-	@Autowired
-	private EmployeeService employeeService;
+  @Autowired
+  private EmployeeService employeeService;
 
-	@RequestMapping("/show/{clave}")
-	public String show(Model model, @PathVariable String clave){
-		model.addAttribute("aContact", employeeService.show(clave));
+  @RequestMapping(value="/show/{clave}", method = RequestMethod.GET)
+  public String show(Model model, @RequestParam(value = "clave", required = false) String clave){
+	Contact contact=new Contact();
+	contact=employeeService.show(clave);
+	model.addAttribute("contact", contact);
+	System.out.println("--------------------------");
+	return "consulta";
+  }
+   
+  @RequestMapping(value="/employee", method = RequestMethod.GET)
+  public String consulta(Model model) {
+    	model.addAttribute("contact", employeeService.listIdEmployee());
+        System.out.println("++++++++++++++++++++");
+    	return "list";
+  }
 
-		return "list";
-	}
-	   
-	@RequestMapping("/employee")
-	public String consulta(Model model) {
-		model.addAttribute("contact", employeeService.listIdEmployee());
-	    
-	    	return "consulta";
-	}
+  @RequestMapping("/eliminar")
+  public String cargaEliminar (Model model){
+	return "delete";
+  }
 
-	@RequestMapping("/delete")
-	public String delete (Model model, @ModelAttribute("contactDelete") String id){
-
+  @RequestMapping(value="/delete", method = RequestMethod.POST)
+  public String delete (Model model, @RequestParam(value = "id", required = false) String id){
+	if(id!=null){
 		int c=employeeService.delete(id);
-
 		model.addAttribute("filas",c);
-
 		return "deleteOK";
+	}else{
+		return "delete";	
 	}
+  }
 
-	@RequestMapping("/insert")
-	public String insertar(Model model,@ModelAttribute("contactInsert") Contact contact){
-		Contact contact1=new Contact();
-		contact1.setName(contact.getName());
-		contact1.setAddress(contact.getAddress());
-		contact1.setEmail(contact.getEmail());
-		contact1.setTelephone(contact.getTelephone());
+  @RequestMapping("/add")
+  public String cargaInsertar (Model model){
+	return "add";
+  }
 
-		int c = employeeService.insert(contact1);
-		model.addAttribute("resultado", c);
-
-		return "insertOK";
-	
-	}
-
-
-	@RequestMapping("/editar")
-	public String editar (Model model,@ModelAttribute("contactEdit") Contact contact){
-
-		Contact contact1=new Contact();
-		if(contact.getName()!=null){contact1.setName(contact.getName());}
-		if(contact.getAddress()!=null){contact1.setAddress(contact.getAddress());}
-		if(contact.getEmail()!=null){contact1.setEmail(contact.getEmail());}
-		if(contact.getTelephone()!=null){contact1.setTelephone(contact.getTelephone());}
-
-		int c = employeeService.insert(contact1);
+  @RequestMapping(value="/insert", method = RequestMethod.POST)
+  public String insertar(Model model,@ModelAttribute Contact contact){
+	if(contact!=null){
+		int c = employeeService.insert(contact);
 		model.addAttribute("resultado", c);
 
 		return "updateOK";
+	}else{
+		return "add";
 	}
+	
+  }
+
+  @RequestMapping("/edit")
+  public String cargaEditar (Model model){
+	return "edit";
+  }
+
+
+  @RequestMapping(value="/editar", method = RequestMethod.POST)
+  public String editar (Model model,
+		@RequestParam(value="id") String id,
+		@RequestParam(value="name", required=false) String name,
+		@RequestParam(value="address", required=false) String address,
+		@RequestParam(value="email", required=false) String email,
+		@RequestParam(value="telephone", required=false) String telephone){
+	if(id==null){
+		Contact contact=new Contact();
+		if(name!=null){contact.setName(name);}
+		if(address!=null){contact.setAddress(address);}
+		if(email!=null){contact.setEmail(email);}
+		if(telephone!=null){contact.setTelephone(telephone);}
+
+		int c = employeeService.insert(contact);
+		model.addAttribute("resultado", c);
+
+		return "updateOK";	
+	}else{
+		return "edit";
+	}
+
+  }
 
 }

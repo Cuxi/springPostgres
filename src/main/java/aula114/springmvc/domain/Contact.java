@@ -1,28 +1,17 @@
 package aula114.springmvc.domain;
 import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+/**
+ * 
+ * @author www.codejava.net
+ *
+ */
 
-@Entity
-@Table(name = "contact")
 public class Contact implements Serializable{
         private static final long serialVersionUID = 1L;
-	
-	@Column(name = "name")
 	private String name;
-
-	@Column(name = "email")
 	private String email;
-
-	@Column(name = "address")
 	private String address;
-
-	@Column(name = "telephone")
 	private String telephone;
 
         public Contact() { }
@@ -65,8 +54,7 @@ public class Contact implements Serializable{
 		this.telephone = telephone;
 	}
 
-	@Override
 	public String toString() {
-		return String.format("Contact[name=%s,email=%s,address=%s,telephone=%s]", name, email, address, telephone);
+		return String.format("[%s - %s - %s - %s]", name, email, address, telephone);
 	}
 }
