@@ -10,8 +10,8 @@
 		<c:otherwise>Editado ${res}
 		</c:otherwise>
 	</c:choose>
-	<form method="GET" action="/employee">
-		<input type="submit" value="Aceptar">
+	<form method="POST" id="formu1" action="/employee">
+		<input type="submit" id="send" value="Aceptar">
 	</form>
 </body>
 </html> 

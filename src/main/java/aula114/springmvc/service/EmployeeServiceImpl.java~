@@ -19,24 +19,24 @@ import aula114.springmvc.domain.Contact;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+    @Autowired
+    	private JdbcTemplate jdbcTemplate;
 
 	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+    	private RedisTemplate<String, String> redisTemplate;
 	
 	private List<String> listId = new ArrayList<String>();
 
 	@Override
 	public List<String> listIdEmployee() {
         //  Se obtiene desde Redis
-    	String KEY = "Contact"; //Tomado del proyecto springLoadDataRedis
-    	Set<Object> list = redisTemplate.opsForHash().keys(KEY);
+        	String KEY = "Contact"; //Tomado del proyecto springLoadDataRedis
+	    	Set<Object> list = redisTemplate.opsForHash().keys(KEY);
 	    
 		List<String> listId1 = new ArrayList(list);
 
-    	listId = listId1;
-    	return listId;
+	    	listId = listId1;
+        	return listId;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class EmployeeServiceImpl implements EmployeeService {
   		
 		contact = jdbcTemplate.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper<Contact>(Contact.class));
 
-        return contact;
+        	return contact;
 	}
 	public int insert(Contact c){
 		c=new Contact();

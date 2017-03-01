@@ -9,8 +9,8 @@
 	 <p>${contact.address}</p>
 	 <p>${contact.telephone}</p>
 
-	<form method="GET" action="/employee">
-		<input type="submit" value="Listar">
+	<form action="/employee">
+		<input type="submit" value="Volver a listado">
 	</form>
 </body>
 </html>

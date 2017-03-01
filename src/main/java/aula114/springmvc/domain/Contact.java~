@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "contact")
 public class Contact implements Serializable{
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 	
 	@Column(name = "name")
 	private String name;
@@ -67,6 +67,6 @@ public class Contact implements Serializable{
 
 	@Override
 	public String toString() {
-		return String.format("Contact[name=%s,email=%s,address=%s,telephone=%s]", name, email, address, telephone);
+		return String.format("Contact[%s - %s - %s - %s]", name, email, address, telephone);
 	}
 }

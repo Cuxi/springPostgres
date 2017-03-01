@@ -8,9 +8,7 @@
 		<p>
 			"error"
 		</p>
-	<form method="GET" action="/employee">
-		<input type="submit" value="Listar">
-	</form>
+	
 
 </body>
 </html>
